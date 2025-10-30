@@ -13,17 +13,16 @@ public class AWTMenuPractice extends Frame implements ActionListener {
         setTitle("AWT MENU Practice");
         setSize(600, 400);
         setLayout(new BorderLayout());
+        setBackground(Color.LIGHT_GRAY); // Frame background
 
         // ===== MENU BAR =====
         MenuBar menuBar = new MenuBar();
-        Menu pagesMenu = new Menu("Pages");
 
+        Menu pagesMenu = new Menu("Pages");
         loginItem = new MenuItem("Login");
         studentItem = new MenuItem("Student");
-
         loginItem.addActionListener(this);
         studentItem.addActionListener(this);
-
         pagesMenu.add(loginItem);
         pagesMenu.add(studentItem);
 
@@ -41,6 +40,7 @@ public class AWTMenuPractice extends Frame implements ActionListener {
 
         // --- LOGIN PAGE ---
         Panel loginPanel = new Panel(new GridBagLayout());
+        loginPanel.setBackground(new Color(173, 216, 230)); // Light blue
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -77,6 +77,7 @@ public class AWTMenuPractice extends Frame implements ActionListener {
 
         // --- STUDENT PAGE ---
         Panel studentPanel = new Panel(new GridLayout(3, 1));
+        studentPanel.setBackground(new Color(240, 230, 140)); // Khaki
         studentPanel.add(new Label("STUDENT PAGE", Label.CENTER));
         studentPanel.add(new Label("Name: Umutoni Angella", Label.CENTER));
         studentPanel.add(new Label("Reg No: 24RP09732", Label.CENTER));
@@ -104,14 +105,12 @@ public class AWTMenuPractice extends Frame implements ActionListener {
         // Menu clicks
         if (e.getSource() == loginItem) {
             cardLayout.show(mainPanel, "login");
-        }
-        else if (e.getSource() == studentItem) {
+        } else if (e.getSource() == studentItem) {
             cardLayout.show(mainPanel, "student");
         }
         // Login button
         else if (e.getActionCommand().equals("LOGIN")) {
             if (username.equals("angella") && password.equals("12345")) {
-                // Correct credentials
                 Dialog successDialog = new Dialog(this, "Login Successful", true);
                 successDialog.setLayout(new FlowLayout());
                 successDialog.add(new Label("Welcome, Umutoni Angella!"));
@@ -125,7 +124,6 @@ public class AWTMenuPractice extends Frame implements ActionListener {
                 successDialog.setLocationRelativeTo(this);
                 successDialog.setVisible(true);
             } else {
-                // Wrong credentials
                 Dialog errorDialog = new Dialog(this, "Login Failed", true);
                 errorDialog.setLayout(new FlowLayout());
                 errorDialog.add(new Label("Invalid username or password!"));
